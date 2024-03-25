@@ -12,10 +12,14 @@ import { useFrame, useThree } from '@react-three/fiber'
 import koiFishScene from '../assets/3d/koi_fish.glb'
 import { a } from '@react-spring/three'
 
-const KoiFish = (props) => {
+const KoiFish = (isSwimming, props) => {
   const group = useRef()
-  const { nodes, materials, animations } = useGLTF(koiFishScene)
+  const { nodes, materials, scene, animations } = useGLTF(koiFishScene)
   const { actions } = useAnimations(animations, group)
+
+  useEffect(() => {
+    actions['Take 001']?.play()
+  }, [])
 
   return (
     <group ref={group} {...props} dispose={null}>
