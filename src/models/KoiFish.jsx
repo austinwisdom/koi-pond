@@ -18,8 +18,33 @@ const KoiFish = (isSwimming, props) => {
   const { actions } = useAnimations(animations, group)
 
   useEffect(() => {
-    actions['Take 001']?.play()
+    actions['MorphBake']?.play()
   }, [])
+
+  useFrame(({ clock, camera }) => {
+    // Update the Y position to simulate bird-like motion using a sine wave
+    group.current.position.y = Math.sin(clock.elapsedTime) * 0.2 + 2;
+
+    // Check if the bird reached a certain endpoint relative to the camera
+    if (group.current.position.x > camera.position.x + 10) {
+      // Change direction to backward and rotate the bird 180 degrees on the y-axis
+      group.current.rotation.y = Math.PI;
+    } else if (group.current.position.x < camera.position.x - 10) {
+      // Change direction to forward and reset the bird's rotation
+      group.current.rotation.y = 0;
+    }
+
+    // Update the X and Z positions based on the direction
+    if (group.current.rotation.y === 0) {
+      // Moving forward
+      group.current.position.x += 0.01;
+      group.current.position.z -= 0.01;
+    } else {
+      // Moving backward
+      group.current.position.x -= 0.01;
+      group.current.position.z += 0.01;
+    }
+  });
 
   return (
     <group ref={group} {...props} dispose={null}>
