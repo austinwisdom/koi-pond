@@ -3,6 +3,7 @@ import { Canvas } from '@react-three/fiber'
 import Loader from '../component/Loader';
 import KoiFish from '../models/KoiFish';
 import { OrbitControls } from '@react-three/drei';
+import SchoolOfFish from '../models/SchoolOfFish';
 
 const HomePage = () => {
 
@@ -23,25 +24,25 @@ const HomePage = () => {
     }
 
     const [fishScale, fishPosition, fishRotation] = adjustModelSize()
+    const koiPosition = [-0.268, 0, 0]
 
     return (
         <section className='w-full h-screen relative'>
-            <div className='absolute'>
-                <h1 className='text-slate-100'>Koi Pond</h1>
-                
-            </div>
+            
             <Canvas className='w-full h-screen bg-transparent z-10'
                 camera={ { near: 0.1, far: 1000}}
             >
                 <Suspense fallback={<Loader />}>
                     {/* <OrbitControls /> */}
-                    <ambientLight />
+                    <ambientLight intensity={2} />
                     <KoiFish
-                        
                         // position={fishPosition}
                         // scale={fishScale}
                         // rotation={fishRotation}
                     />
+                    <KoiFish
+                        position={koiPosition} />
+                    {/* <SchoolOfFish /> */}
                 </Suspense>
             </Canvas>
         </section>
