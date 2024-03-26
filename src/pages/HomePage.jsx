@@ -27,10 +27,14 @@ const HomePage = () => {
     const koiPosition = [-0.268, 0, 0]
     const koiPosition2 = [-5, -5, -3]
     const koiPosition3 = [-23, -7, -10]
+    const koiPosition4 = [-44, -6, -2]
+    const koiPosition5 = [-10, -4, -3]
 
     const koiBounds1 = [15, 10]
     const koiBounds2 = [27, 20]
     const koiBounds3 = [45, 40]
+    const koiBounds4 = [45, 40]
+    const koiBounds5 = [25, 25]
 
     const koiSwing1 = 2
     const koiSwing2 = 3
@@ -47,6 +51,7 @@ const HomePage = () => {
                 <Suspense fallback={<Loader />}>
                     <OrbitControls />
                     <ambientLight intensity={2} />
+
                     <KoiFish
                         position={koiPosition}
                         bounds={koiBounds1}
@@ -58,12 +63,23 @@ const HomePage = () => {
                         bounds={koiBounds2}
                         swing={koiSwing2}
                         zMovement={koiZMovement}
-                        />
+                    />
                     <KoiFish 
                         position={koiPosition3} 
                         bounds={koiBounds3}
                         swing={koiSwing3}
-                        />
+                    />
+                    <KoiFish 
+                        position={koiPosition4} 
+                        bounds={koiBounds4}
+                        swing={koiSwing3}
+                        orientation={1}
+                    />
+                    <KoiFish 
+                        position={koiPosition5} 
+                        bounds={koiBounds5}
+                        swing={koiSwing3}
+                    />
                 </Suspense>
             </Canvas>
         </section>

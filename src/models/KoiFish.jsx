@@ -12,7 +12,7 @@ import { useFrame, useThree } from '@react-three/fiber'
 import koiFishScene from '../assets/3d/koi_fish.glb'
 import { a } from '@react-spring/three'
 
-const KoiFish = ({position, bounds, swing, zMovement, ...props}) => {
+const KoiFish = ({position, bounds, swing, zMovement, orientation, ...props}) => {
 
   const group = useRef()
   const { nodes, materials, scene, animations } = useGLTF(koiFishScene)
@@ -27,9 +27,24 @@ const koiRBound = bounds[0] || 15
 const koiLBound = bounds[1] || 10
 const koiSwing = swing || 2
 const koiZMovement = zMovement || 0
+const koiOrientation = orientation || 0
+
+const rotateX = group?.current?.rotation?.x
+const rotateY = group?.current?.rotation?.y
+const rotateZ = group?.current?.rotation?.z
+
+const positionX = group?.current?.position?.x
+const positionY = group?.current?.position?.y
+const positionZ = group?.current?.position?.z
 
 const pokeFish = () => {
     console.log("Fish poked")
+    
+    const moveToCamera = group.current.rotation.y -= .5
+    const returnToPosition = group.current.rotation.y += .25
+    
+    moveToCamera
+
 }
 
 
@@ -51,11 +66,16 @@ useFrame(({ clock, camera }) => {
       // Moving forward
       group.current.position.x += 0.01;
       group.current.position.z -= koiZMovement;
-    } else {
+    } else if (group.current.rotation.y === 1) {
       // Moving backward
       group.current.position.x -= 0.01;
       group.current.position.z += koiZMovement;
-    }
+    } else {
+        // Moving backward
+        group.current.position.x -= 0.01;
+        group.current.position.z += koiZMovement;
+      }
+    
   });
 
   return (
@@ -66,7 +86,7 @@ useFrame(({ clock, camera }) => {
       <group name="Sketchfab_model" rotation={[-Math.PI / 2, 0, 0]}>
           <group name="root">
             <group name="GLTF_SceneRootNode" rotation={[Math.PI / 2, 0, 0]}>
-              <group name="koifish_0" position={koiPosition} rotation={[Math.PI, 0, Math.PI]}>
+              <group name="koifish_0" position={koiPosition} rotation={[Math.PI, koiOrientation, Math.PI]}>
                 <mesh
                   name="mesh_0"
                   castShadow
