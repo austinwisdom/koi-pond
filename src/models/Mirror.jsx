@@ -11,6 +11,7 @@ const Mirror2 = () => {
     if (sphereExists) {
         useFrame(({clock, camera}) => {
             sphereRef.current.position.x = Math.cos(clock.elapsedTime) * 0.2 + .01;
+            sphereRef.current.position.y = Math.sin(clock.elapsedTime) * 0.2 + .01;
             if (sphereRef.current.position.y < camera.position.y + 1) {
                 sphereRef.current.position.y += .01
             } else {
@@ -26,7 +27,7 @@ const Mirror2 = () => {
     })
 
     return (
-        (sphereExists && <Sphere ref={sphereRef} args={[1, 256, 256]} position={[0, 0, 0]}>
+        (sphereExists && <Sphere ref={sphereRef} args={[1, 256, 256]} position={[0, -1, 0]}>
             <meshStandardMaterial {...tweakableProperties} />
         </Sphere>)
     )
