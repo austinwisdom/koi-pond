@@ -1,26 +1,19 @@
-import React, { useRef, useState } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
-import { CubeCamera, useCubeTexture } from '@react-three/drei';
+import { useTexture } from "@react-three/drei"
+import { Sphere } from "@react-three/drei"
+import { useControls } from 'leva'
 
-const Mirror = () => {
-  const [cubeTexture, setCubeTexture] = useState(null);
+const Mirror2 = () => {
+    
+    const tweakableProperties = useControls({
+        roughness: { value: 0, min: 0, max: 1 },
+        metalness: {value: 1, min: 0, max: 1 }
+    })
 
-  const cubeCameraRef = useRef();
+    return (
+        <Sphere args={[1, 256, 256]}>
+            <meshStandardMaterial {...tweakableProperties} />
+        </Sphere>
+    )
+  }
 
-  useFrame(() => {
-    cubeCameraRef.current.update(renderer, scene);
-  });
-
-  useCubeTexture(cubeTexture, {
-    envMap: cubeTexture,
-  });
-
-  return (
-    <mesh>
-      <boxBufferGeometry attach="geometry" args={[1, 1, 1]} />
-      <meshPhongMaterial attach="material" envMap={cubeTexture} />
-    </mesh>
-  );
-};
-
-export default Mirror
+export default Mirror2

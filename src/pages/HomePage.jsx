@@ -2,13 +2,11 @@ import { Suspense, useState } from 'react';
 import { Canvas } from '@react-three/fiber' 
 import Loader from '../component/Loader';
 import KoiFish from '../models/KoiFish';
-import { CubeCamera, Environment, OrbitControls } from '@react-three/drei';
-import SurfaceCube from '../models/SurfaceCube';
+import { CubeCamera, Environment, OrbitControls, useEnvironment } from '@react-three/drei';
+
 import BambooRaft from '../models/BambooRaft';
 import WaterLine from '../models/WaterLine';
-import Ceiling from '../models/Ceiling';
 import Mirror from '../models/Mirror';
-import Mirror2 from '../models/Mirror2';
 
 const HomePage = () => {
 
@@ -49,6 +47,8 @@ const HomePage = () => {
     const koiSpeed1 = .02
     const koiSpeed2 = .03
 
+    const envMap = useEnvironment({ path: "/underwater"})
+
 
     return (
         <section className='w-full h-screen relative'>
@@ -61,16 +61,16 @@ const HomePage = () => {
                     <ambientLight intensity={1} />
                     <pointLight position={[5, 5, 5]} />
                     <pointLight position={[-3, -3, 2]} />
+                    <Environment map={envMap} background />
                     <CubeCamera frames={Infinity}>
                         {/* @ts-ignore */}
                         {(texture) => (
                           <>
                             <Environment map={texture} />
-                            <Mirror2 />
+                            <Mirror />
                           </>
                         )}
                     </CubeCamera>
-                    <WaterLine />
                     <BambooRaft />
                     <KoiFish
                         position={koiPosition}
