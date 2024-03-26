@@ -33,14 +33,14 @@ const HomePage = () => {
                 camera={ { near: 0.1, far: 1000}}
             >
                 <Suspense fallback={<Loader />}>
-                    <OrbitControls />
+                    {/* <OrbitControls /> */}
                     <ambientLight intensity={2} />
                     <KoiFish
                         // position={fishPosition}
                         // scale={fishScale}
                         // rotation={fishRotation}
                     />
-                    <KoiFish />
+                    {/* <KoiFish /> */}
                     {/* <SchoolOfFish /> */}
                 </Suspense>
             </Canvas>
