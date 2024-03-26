@@ -25,7 +25,10 @@ const HomePage = () => {
 
     const [fishScale, fishPosition, fishRotation] = adjustModelSize()
     const koiPosition = [-0.268, 0, 0]
-    const koiPosition2 = [-1, -3, 0]
+    const koiPosition2 = [10, -3, -3]
+
+    const koiBounds1 = [15, 10]
+    const koiBounds2 = [20, 12]
 
     return (
         <section className='w-full h-screen relative'>
@@ -34,15 +37,15 @@ const HomePage = () => {
                 camera={ { near: 0.1, far: 1000}}
             >
                 <Suspense fallback={<Loader />}>
-                    {/* <OrbitControls /> */}
+                    <OrbitControls />
                     <ambientLight intensity={2} />
                     <KoiFish
                         position={koiPosition}
-                        // scale={fishScale}
-                        // rotation={fishRotation}
+                        bounds={koiBounds1}
                     />
                     <KoiFish
-                        position={koiPosition2} />
+                        position={koiPosition2}
+                        bounds={koiBounds2} />
                     {/* <SchoolOfFish /> */}
                 </Suspense>
             </Canvas>

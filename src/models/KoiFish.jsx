@@ -12,7 +12,8 @@ import { useFrame, useThree } from '@react-three/fiber'
 import koiFishScene from '../assets/3d/koi_fish.glb'
 import { a } from '@react-spring/three'
 
-const KoiFish = (position, ...props) => {
+const KoiFish = ({position, bounds, ...props}) => {
+
   const group = useRef()
   const { nodes, materials, scene, animations } = useGLTF(koiFishScene)
   const { actions } = useAnimations(animations, group)
@@ -20,8 +21,6 @@ const KoiFish = (position, ...props) => {
   useEffect(() => {
     actions['MorphBake']?.play()
   }, [])
-
-  console.log(position.position)
 
 //   useFrame(({ camera }) => {
 
@@ -46,17 +45,21 @@ const KoiFish = (position, ...props) => {
 //     }
 //   });
 
-const koiPosition = position.position
+const koiPosition = position
+const koiRBound = bounds[0] || 15
+const koiLBound = bounds[1] || 10
+
+console.log(koiPosition)
 
 useFrame(({ clock, camera }) => {
     // Update the Y position to simulate koi-like motion using a sine wave
     group.current.position.y = Math.sin(clock.elapsedTime) * 0.2 + 2;
 
     // Check if the koi reached a certain endpoint relative to the camera
-    if (group.current.position.x > camera.position.x + 15) {
+    if (group.current.position.x > camera.position.x + koiRBound) {
       // Change direction to backward and rotate the koi 180 degrees on the y-axis
       group.current.rotation.y = Math.PI;
-    } else if (group.current.position.x < camera.position.x - 10) {
+    } else if (group.current.position.x < camera.position.x - koiLBound) {
       // Change direction to forward and reset the koi's rotation
       group.current.rotation.y = 0;
     }
@@ -74,7 +77,9 @@ useFrame(({ clock, camera }) => {
   });
 
   return (
-    <group ref={group} {...props} dispose={null}>
+    <group ref={group} 
+    {...props} 
+    dispose={null}>
       <group name="Sketchfab_Scene">
       <group name="Sketchfab_model" rotation={[-Math.PI / 2, 0, 0]}>
           <group name="root">
