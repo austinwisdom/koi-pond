@@ -40,10 +40,8 @@ const positionZ = group?.current?.position?.z
 
 const pokeFish = () => {
     console.log("Fish poked")
-    
     const moveToCamera = group.current.rotation.y -= .5
     const returnToPosition = group.current.rotation.y += .25
-    
     moveToCamera
 
 }
@@ -72,7 +70,6 @@ useFrame(({ clock, camera }) => {
         group.current.position.x -= koiSpeed;
         group.current.position.z += koiZMovement;
       }
-    
   });
 
   return (

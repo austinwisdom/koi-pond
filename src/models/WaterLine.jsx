@@ -14,11 +14,12 @@ const WaterLine = () => {
                 ref={cubeRef}
                 position={[0, 37, -40]}
                 args={[280, 0.01, 25]} // Width, height, depth. Default is [1, 1, 1]
-               
+                opacity={.1}
             >         
                            
             <MeshDistortMaterial 
                 color={"#94a3b8"}
+                opacity={.1}
                 distort={.75}
                 speed={1}
                 mirror={1}

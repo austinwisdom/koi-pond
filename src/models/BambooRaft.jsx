@@ -16,7 +16,7 @@ const BambooRaft = (props) => {
   const { nodes, materials, scene, animations } = useGLTF(bambooRaftScene)
 
   return (
-    <group {...props} dispose={null} position={[5.715, -16, -30]} rotation={[2, -5, Math.PI / 2]}>
+    <group {...props} dispose={null} position={[5.715, -56, -30]} rotation={[2, -5, Math.PI / 2]}>
       <mesh
         castShadow
         receiveShadow

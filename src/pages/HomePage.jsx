@@ -3,7 +3,6 @@ import { Canvas } from '@react-three/fiber'
 import Loader from '../component/Loader';
 import KoiFish from '../models/KoiFish';
 import { CubeCamera, Environment, OrbitControls, useEnvironment } from '@react-three/drei';
-
 import BambooRaft from '../models/BambooRaft';
 import WaterLine from '../models/WaterLine';
 import Mirror from '../models/Mirror';
@@ -36,7 +35,7 @@ const HomePage = () => {
     const koiBounds1 = [15, 10]
     const koiBounds2 = [27, 20]
     const koiBounds3 = [45, 40]
-    const koiBounds4 = [45, 40]
+    const koiBounds4 = [15, 15]
     const koiBounds5 = [35, 35]
 
     const koiSwing1 = 2
@@ -57,13 +56,14 @@ const HomePage = () => {
                 camera={ { near: 0.1, far: 1000}}
             >
                 <Suspense fallback={<Loader />}>
-                    <OrbitControls />
+                    {/* <OrbitControls /> */}
                     <ambientLight intensity={1} />
                     <pointLight position={[5, 5, 5]} />
                     <pointLight position={[-3, -3, 2]} />
                     <Environment map={envMap} background />
+                    {/* <WaterLine /> */}
                     <CubeCamera frames={Infinity}>
-                        {/* @ts-ignore */}
+                        
                         {(texture) => (
                           <>
                             <Environment map={texture} />
