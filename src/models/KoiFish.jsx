@@ -12,7 +12,7 @@ import { useFrame, useThree } from '@react-three/fiber'
 import koiFishScene from '../assets/3d/koi_fish.glb'
 import { a } from '@react-spring/three'
 
-const KoiFish = ({position, bounds, ...props}) => {
+const KoiFish = ({position, bounds, swing, zMovement, ...props}) => {
 
   const group = useRef()
   const { nodes, materials, scene, animations } = useGLTF(koiFishScene)
@@ -22,38 +22,20 @@ const KoiFish = ({position, bounds, ...props}) => {
     actions['MorphBake']?.play()
   }, [])
 
-//   useFrame(({ camera }) => {
-
-//     // Check if the koi reached a certain endpoint relative to the camera
-//     if (group.current.position.x > camera.position.x + 10) {
-//       // Change direction to backward and rotate the koi 180 degrees on the y-axis
-//       group.current.rotation.x = Math.PI;
-//     } else if (group.current.position.x < camera.position.x - 10) {
-//       // Change direction to forward and reset the koi's rotation
-//       group.current.rotation.y = 0;
-//     }
-
-//     // Update the X and Z positions based on the direction
-//     if (group.current.rotation.y === 0) {
-//       // Moving forward
-//       group.current.position.x += 0.01;
-//     //   group.current.position.z -= 0.01;
-//     } else {
-//       // Moving backward
-//       group.current.position.x -= 0.01;
-//     //   group.current.position.z += 0.01;
-//     }
-//   });
-
 const koiPosition = position
 const koiRBound = bounds[0] || 15
 const koiLBound = bounds[1] || 10
+const koiSwing = swing || 2
+const koiZMovement = zMovement || 0
 
-console.log(koiPosition)
+const pokeFish = () => {
+    console.log("Fish poked")
+}
+
 
 useFrame(({ clock, camera }) => {
     // Update the Y position to simulate koi-like motion using a sine wave
-    group.current.position.y = Math.sin(clock.elapsedTime) * 0.2 + 2;
+    group.current.position.y = Math.sin(clock.elapsedTime) * 0.2 + koiSwing;
 
     // Check if the koi reached a certain endpoint relative to the camera
     if (group.current.position.x > camera.position.x + koiRBound) {
@@ -68,11 +50,11 @@ useFrame(({ clock, camera }) => {
     if (group.current.rotation.y === 0) {
       // Moving forward
       group.current.position.x += 0.01;
-      group.current.position.z -= 0.0025;
+      group.current.position.z -= koiZMovement;
     } else {
       // Moving backward
       group.current.position.x -= 0.01;
-      group.current.position.z += 0.0025;
+      group.current.position.z += koiZMovement;
     }
   });
 
@@ -93,6 +75,7 @@ useFrame(({ clock, camera }) => {
                   material={materials.SimplygonCastMaterial}
                   morphTargetDictionary={nodes.mesh_0.morphTargetDictionary}
                   morphTargetInfluences={nodes.mesh_0.morphTargetInfluences}
+                  onClick={pokeFish}
                 />
               </group>
             </group>

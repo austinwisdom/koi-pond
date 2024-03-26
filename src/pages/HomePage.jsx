@@ -25,10 +25,18 @@ const HomePage = () => {
 
     const [fishScale, fishPosition, fishRotation] = adjustModelSize()
     const koiPosition = [-0.268, 0, 0]
-    const koiPosition2 = [10, -3, -3]
+    const koiPosition2 = [-5, -5, -3]
+    const koiPosition3 = [-23, -7, -10]
 
     const koiBounds1 = [15, 10]
-    const koiBounds2 = [20, 12]
+    const koiBounds2 = [27, 20]
+    const koiBounds3 = [45, 40]
+
+    const koiSwing1 = 2
+    const koiSwing2 = 3
+    const koiSwing3 = 4
+
+    const koiZMovement = 0.0025
 
     return (
         <section className='w-full h-screen relative'>
@@ -42,11 +50,20 @@ const HomePage = () => {
                     <KoiFish
                         position={koiPosition}
                         bounds={koiBounds1}
+                        swing={koiSwing1}
+                        zMovement={koiZMovement}
                     />
                     <KoiFish
                         position={koiPosition2}
-                        bounds={koiBounds2} />
-                    {/* <SchoolOfFish /> */}
+                        bounds={koiBounds2}
+                        swing={koiSwing2}
+                        zMovement={koiZMovement}
+                        />
+                    <KoiFish 
+                        position={koiPosition3} 
+                        bounds={koiBounds3}
+                        swing={koiSwing3}
+                        />
                 </Suspense>
             </Canvas>
         </section>
