@@ -21,12 +21,37 @@ const KoiFish = (position, props) => {
     actions['MorphBake']?.play()
   }, [])
 
-  useFrame(({ camera }) => {
+//   useFrame(({ camera }) => {
+
+//     // Check if the koi reached a certain endpoint relative to the camera
+//     if (group.current.position.x > camera.position.x + 10) {
+//       // Change direction to backward and rotate the koi 180 degrees on the y-axis
+//       group.current.rotation.x = Math.PI;
+//     } else if (group.current.position.x < camera.position.x - 10) {
+//       // Change direction to forward and reset the koi's rotation
+//       group.current.rotation.y = 0;
+//     }
+
+//     // Update the X and Z positions based on the direction
+//     if (group.current.rotation.y === 0) {
+//       // Moving forward
+//       group.current.position.x += 0.01;
+//     //   group.current.position.z -= 0.01;
+//     } else {
+//       // Moving backward
+//       group.current.position.x -= 0.01;
+//     //   group.current.position.z += 0.01;
+//     }
+//   });
+
+useFrame(({ clock, camera }) => {
+    // Update the Y position to simulate koi-like motion using a sine wave
+    group.current.position.y = Math.sin(clock.elapsedTime) * 0.2 + 2;
 
     // Check if the koi reached a certain endpoint relative to the camera
-    if (group.current.position.x > camera.position.x + 10) {
+    if (group.current.position.x > camera.position.x + 15) {
       // Change direction to backward and rotate the koi 180 degrees on the y-axis
-      group.current.rotation.x = Math.PI;
+      group.current.rotation.y = Math.PI;
     } else if (group.current.position.x < camera.position.x - 10) {
       // Change direction to forward and reset the koi's rotation
       group.current.rotation.y = 0;
@@ -36,23 +61,21 @@ const KoiFish = (position, props) => {
     if (group.current.rotation.y === 0) {
       // Moving forward
       group.current.position.x += 0.01;
-    //   group.current.position.z -= 0.01;
+      group.current.position.z -= 0.0025;
     } else {
       // Moving backward
       group.current.position.x -= 0.01;
-    //   group.current.position.z += 0.01;
+      group.current.position.z += 0.0025;
     }
   });
 
   return (
     <group ref={group} {...props} dispose={null}>
       <group name="Sketchfab_Scene">
-        <group name="Sketchfab_model" rotation={[-Math.PI / 2, 0, 0]}>
+      <group name="Sketchfab_model" rotation={[-Math.PI / 2, 0, 0]}>
           <group name="root">
             <group name="GLTF_SceneRootNode" rotation={[Math.PI / 2, 0, 0]}>
-              <group name="koifish_0" 
-                position={[-0.268, 0, -4]} 
-                rotation={[-1, 0, Math.PI]}>
+              <group name="koifish_0" position={[-0.268, 0, 0]} rotation={[Math.PI, 0, Math.PI]}>
                 <mesh
                   name="mesh_0"
                   castShadow

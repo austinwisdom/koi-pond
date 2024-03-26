@@ -7,7 +7,7 @@ const App = () => {
     return (
         <main className='bg-slate-600 h-screen w-screen'>
             <Router>
-                <Navbar />
+                {/* <Navbar /> */}
                 <Routes>
                     <Route path='/' element={<HomePage />} />
                 </Routes>
