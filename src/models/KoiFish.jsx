@@ -12,7 +12,7 @@ import { useFrame, useThree } from '@react-three/fiber'
 import koiFishScene from '../assets/3d/koi_fish.glb'
 import { a } from '@react-spring/three'
 
-const KoiFish = ({position, bounds, swing, zMovement, orientation, ...props}) => {
+const KoiFish = ({position, bounds, swing, zMovement, orientation, speed, ...props}) => {
 
   const group = useRef()
   const { nodes, materials, scene, animations } = useGLTF(koiFishScene)
@@ -28,6 +28,7 @@ const koiLBound = bounds[1] || 10
 const koiSwing = swing || 2
 const koiZMovement = zMovement || 0
 const koiOrientation = orientation || 0
+const koiSpeed = speed || 0.01
 
 const rotateX = group?.current?.rotation?.x
 const rotateY = group?.current?.rotation?.y
@@ -64,15 +65,11 @@ useFrame(({ clock, camera }) => {
     // Update the X and Z positions based on the direction
     if (group.current.rotation.y === 0) {
       // Moving forward
-      group.current.position.x += 0.01;
+      group.current.position.x += koiSpeed;
       group.current.position.z -= koiZMovement;
-    } else if (group.current.rotation.y === 1) {
-      // Moving backward
-      group.current.position.x -= 0.01;
-      group.current.position.z += koiZMovement;
     } else {
         // Moving backward
-        group.current.position.x -= 0.01;
+        group.current.position.x -= koiSpeed;
         group.current.position.z += koiZMovement;
       }
     

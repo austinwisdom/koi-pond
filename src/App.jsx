@@ -6,7 +6,7 @@ import Footer from './component/Footer';
 
 const App = () => {
     return (
-        <main className='bg-slate-600 h-screen w-screen'>
+        <main className='bg-slate-700 h-screen w-screen'>
             <Router>
                 <Navbar />
                 <Routes>

@@ -2,8 +2,13 @@ import { Suspense, useState } from 'react';
 import { Canvas } from '@react-three/fiber' 
 import Loader from '../component/Loader';
 import KoiFish from '../models/KoiFish';
-import { OrbitControls } from '@react-three/drei';
-import SchoolOfFish from '../models/SchoolOfFish';
+import { CubeCamera, Environment, OrbitControls } from '@react-three/drei';
+import SurfaceCube from '../models/SurfaceCube';
+import BambooRaft from '../models/BambooRaft';
+import WaterLine from '../models/WaterLine';
+import Ceiling from '../models/Ceiling';
+import Mirror from '../models/Mirror';
+import Mirror2 from '../models/Mirror2';
 
 const HomePage = () => {
 
@@ -34,13 +39,16 @@ const HomePage = () => {
     const koiBounds2 = [27, 20]
     const koiBounds3 = [45, 40]
     const koiBounds4 = [45, 40]
-    const koiBounds5 = [25, 25]
+    const koiBounds5 = [35, 35]
 
     const koiSwing1 = 2
     const koiSwing2 = 3
     const koiSwing3 = 4
 
     const koiZMovement = 0.0025
+    const koiSpeed1 = .02
+    const koiSpeed2 = .03
+
 
     return (
         <section className='w-full h-screen relative'>
@@ -49,9 +57,21 @@ const HomePage = () => {
                 camera={ { near: 0.1, far: 1000}}
             >
                 <Suspense fallback={<Loader />}>
-                    {/* <OrbitControls /> */}
-                    <ambientLight intensity={2} />
-
+                    <OrbitControls />
+                    <ambientLight intensity={1} />
+                    <pointLight position={[5, 5, 5]} />
+                    <pointLight position={[-3, -3, 2]} />
+                    <CubeCamera frames={Infinity}>
+                        {/* @ts-ignore */}
+                        {(texture) => (
+                          <>
+                            <Environment map={texture} />
+                            <Mirror2 />
+                          </>
+                        )}
+                    </CubeCamera>
+                    <WaterLine />
+                    <BambooRaft />
                     <KoiFish
                         position={koiPosition}
                         bounds={koiBounds1}
@@ -63,6 +83,7 @@ const HomePage = () => {
                         bounds={koiBounds2}
                         swing={koiSwing2}
                         zMovement={koiZMovement}
+                        speed={koiSpeed1}
                     />
                     <KoiFish 
                         position={koiPosition3} 
@@ -74,6 +95,7 @@ const HomePage = () => {
                         bounds={koiBounds4}
                         swing={koiSwing3}
                         orientation={1}
+                        speed={koiSpeed1}
                     />
                     <KoiFish 
                         position={koiPosition5} 
