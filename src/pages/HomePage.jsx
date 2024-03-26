@@ -49,7 +49,7 @@ const HomePage = () => {
                 camera={ { near: 0.1, far: 1000}}
             >
                 <Suspense fallback={<Loader />}>
-                    <OrbitControls />
+                    {/* <OrbitControls /> */}
                     <ambientLight intensity={2} />
 
                     <KoiFish
