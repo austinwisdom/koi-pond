@@ -12,7 +12,7 @@ import { useFrame, useThree } from '@react-three/fiber'
 import koiFishScene from '../assets/3d/koi_fish.glb'
 import { a } from '@react-spring/three'
 
-const KoiFish = (position, props) => {
+const KoiFish = (position, ...props) => {
   const group = useRef()
   const { nodes, materials, scene, animations } = useGLTF(koiFishScene)
   const { actions } = useAnimations(animations, group)
@@ -20,6 +20,8 @@ const KoiFish = (position, props) => {
   useEffect(() => {
     actions['MorphBake']?.play()
   }, [])
+
+  console.log(position.position)
 
 //   useFrame(({ camera }) => {
 
@@ -43,6 +45,8 @@ const KoiFish = (position, props) => {
 //     //   group.current.position.z += 0.01;
 //     }
 //   });
+
+const koiPosition = position.position
 
 useFrame(({ clock, camera }) => {
     // Update the Y position to simulate koi-like motion using a sine wave
@@ -75,7 +79,7 @@ useFrame(({ clock, camera }) => {
       <group name="Sketchfab_model" rotation={[-Math.PI / 2, 0, 0]}>
           <group name="root">
             <group name="GLTF_SceneRootNode" rotation={[Math.PI / 2, 0, 0]}>
-              <group name="koifish_0" position={[-0.268, 0, 0]} rotation={[Math.PI, 0, Math.PI]}>
+              <group name="koifish_0" position={koiPosition} rotation={[Math.PI, 0, Math.PI]}>
                 <mesh
                   name="mesh_0"
                   castShadow

@@ -25,6 +25,7 @@ const HomePage = () => {
 
     const [fishScale, fishPosition, fishRotation] = adjustModelSize()
     const koiPosition = [-0.268, 0, 0]
+    const koiPosition2 = [-1, -3, 0]
 
     return (
         <section className='w-full h-screen relative'>
@@ -36,11 +37,12 @@ const HomePage = () => {
                     {/* <OrbitControls /> */}
                     <ambientLight intensity={2} />
                     <KoiFish
-                        // position={fishPosition}
+                        position={koiPosition}
                         // scale={fishScale}
                         // rotation={fishRotation}
                     />
-                    {/* <KoiFish /> */}
+                    <KoiFish
+                        position={koiPosition2} />
                     {/* <SchoolOfFish /> */}
                 </Suspense>
             </Canvas>
