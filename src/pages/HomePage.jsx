@@ -4,15 +4,15 @@ import Loader from '../component/Loader';
 import KoiFish from '../models/KoiFish';
 import { CubeCamera, Environment, OrbitControls, useEnvironment } from '@react-three/drei';
 import BambooRaft from '../models/BambooRaft';
-import WaterLine from '../models/WaterLine';
 import Mirror from '../models/Mirror';
 import Grass from '../models/Grass';
 import Sand from '../models/Sand';
+import Bridge from '../models/Bridge';
+import Samurai from '../models/Samurai';
 
 const HomePage = () => {
 
-    const [isSwimming, setIsSwimming] = useState(true)
-
+    //need to hook this up
     const adjustModelSize = () => {
         let screenScale = null
         let screenPosition = [0, -6.5, -43]
@@ -66,10 +66,10 @@ const HomePage = () => {
                     <OrbitControls />
                     <ambientLight intensity={1} />
                     <pointLight position={[5, 5, 5]} />
-                    {/* <pointLight position={[-3, -3, 2]} /> */}
                     <Environment map={envMap} background />
-                    {/* <WaterLine /> */}
                     <Sand />
+                    <Bridge />
+                    <Samurai />
                     <CubeCamera frames={Infinity}>
                         
                         {(texture) => (

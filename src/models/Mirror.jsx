@@ -1,6 +1,6 @@
-import { useRef, useState } from "react"
+import { useRef } from "react"
 import { useFrame } from "@react-three/fiber"
-import { Sphere, useAnimations } from "@react-three/drei"
+import { Sphere } from "@react-three/drei"
 import { useControls, button, folder } from 'leva'
 
 const Mirror2 = () => {

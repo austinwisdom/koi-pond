@@ -8,9 +8,8 @@ Title: Koi Fish
 
 import React, { useRef, useEffect } from 'react'
 import { useGLTF, useAnimations } from '@react-three/drei'
-import { useFrame, useThree } from '@react-three/fiber'
+import { useFrame } from '@react-three/fiber'
 import koiFishScene from '../assets/3d/koi_fish.glb'
-import { a } from '@react-spring/three'
 
 const KoiFish = ({position, bounds, swing, zMovement, orientation, speed, ...props}) => {
 
