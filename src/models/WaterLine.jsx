@@ -1,19 +1,17 @@
-import { useState, Suspense, useRef } from "react";
+import { useRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { OrbitControls, Text, RoundedBox, MeshReflectorMaterial, MeshWobbleMaterial, MeshRefractionMaterial, MeshDistortMaterial, Box } from "@react-three/drei";
-import Loader from "../component/Loader";
-import { MeshLambertMaterial } from "three";
+import { MeshDistortMaterial, Sphere } from "@react-three/drei";
 
 const WaterLine = () => {
 
-    const cubeRef = useRef()
+    const sphereRef = useRef()
 
     return (
         <>
-            <Box
-                ref={cubeRef}
-                position={[0, 37, -40]}
-                args={[280, 0.01, 25]} // Width, height, depth. Default is [1, 1, 1]
+            <Sphere
+                ref={sphereRef}
+                position={[0, 200, -4]}
+                args={[100, 100, 100]} // Width, height, depth. Default is [1, 1, 1]
                 opacity={.1}
             >         
                            
@@ -25,7 +23,7 @@ const WaterLine = () => {
                 mirror={1}
             />
             {/* <MeshWobbleMaterial color={"#94a3b8"} /> */}
-            </Box>
+            </Sphere>
         </>
         
     );

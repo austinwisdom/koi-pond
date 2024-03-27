@@ -7,6 +7,7 @@ import BambooRaft from '../models/BambooRaft';
 import WaterLine from '../models/WaterLine';
 import Mirror from '../models/Mirror';
 import Grass from '../models/Grass';
+import Sand from '../models/Sand';
 
 const HomePage = () => {
 
@@ -65,9 +66,10 @@ const HomePage = () => {
                     <OrbitControls />
                     <ambientLight intensity={1} />
                     <pointLight position={[5, 5, 5]} />
-                    <pointLight position={[-3, -3, 2]} />
+                    {/* <pointLight position={[-3, -3, 2]} /> */}
                     <Environment map={envMap} background />
                     {/* <WaterLine /> */}
+                    <Sand />
                     <CubeCamera frames={Infinity}>
                         
                         {(texture) => (
