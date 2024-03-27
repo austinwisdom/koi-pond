@@ -6,14 +6,21 @@ Source: https://sketchfab.com/3d-models/yard-grass-3a67e76decc849c694c228eb590a9
 Title: Yard Grass
 */
 
-import React, { useRef } from 'react'
+import React, { useRef, useEffect } from 'react'
 import { useGLTF, useAnimations } from '@react-three/drei'
+import grassScene from '../assets/3d/grass.glb'
 
-const Grass = (props) => {
+const Grass = ({position, ...props}) => {
 
   const group = useRef()
-  const { nodes, materials, animations } = useGLTF('/yard_grass.glb')
+  const { nodes, materials, animations } = useGLTF(grassScene)
   const { actions } = useAnimations(animations, group)
+  
+
+  useEffect(() => {
+    actions['Object_0']?.setDuration(20).play()
+  }, [])
+
   return (
     <group ref={group} {...props} dispose={null}>
       <group name="Sketchfab_Scene">
@@ -21,7 +28,7 @@ const Grass = (props) => {
           <group name="gmabccleanermaterialmergergles">
             <group name="Object_2" rotation={[Math.PI / 2, 0, 0]}>
               <group name="Object_3">
-                <group name="MorphMainGroup">
+                <group name="MorphMainGroup" position={position}>
                   <mesh
                     name="gm"
                     castShadow

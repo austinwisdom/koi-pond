@@ -6,6 +6,7 @@ import { CubeCamera, Environment, OrbitControls, useEnvironment } from '@react-t
 import BambooRaft from '../models/BambooRaft';
 import WaterLine from '../models/WaterLine';
 import Mirror from '../models/Mirror';
+import Grass from '../models/Grass';
 
 const HomePage = () => {
 
@@ -26,11 +27,13 @@ const HomePage = () => {
     }
 
     const [fishScale, fishPosition, fishRotation] = adjustModelSize()
+
     const koiPosition = [-0.268, 0, 0]
     const koiPosition2 = [-5, -5, -3]
     const koiPosition3 = [-23, -7, -10]
     const koiPosition4 = [-44, -6, -2]
     const koiPosition5 = [-10, -4, -3]
+    const koiPosition6 = [-10, 1, 3]
 
     const koiBounds1 = [15, 10]
     const koiBounds2 = [27, 20]
@@ -45,6 +48,9 @@ const HomePage = () => {
     const koiZMovement = 0.0025
     const koiSpeed1 = .02
     const koiSpeed2 = .03
+
+    const grassPosition1 = [-10, -12, -10]
+    const grassPosition2 = [10, -12, -10]
 
     const envMap = useEnvironment({ path: "/underwater"})
 
@@ -72,6 +78,8 @@ const HomePage = () => {
                         )}
                     </CubeCamera>
                     <BambooRaft />
+                    <Grass position={grassPosition1} />
+                    <Grass position={grassPosition2} />
                     <KoiFish
                         position={koiPosition}
                         bounds={koiBounds1}
@@ -99,6 +107,11 @@ const HomePage = () => {
                     />
                     <KoiFish 
                         position={koiPosition5} 
+                        bounds={koiBounds5}
+                        swing={koiSwing3}
+                    />
+                    <KoiFish 
+                        position={koiPosition6} 
                         bounds={koiBounds5}
                         swing={koiSwing3}
                     />
