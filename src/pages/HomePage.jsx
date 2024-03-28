@@ -1,8 +1,9 @@
-import { Suspense, useState } from 'react';
+import { Suspense } from 'react';
 import { Canvas } from '@react-three/fiber' 
 import Loader from '../component/Loader';
-import KoiFish from '../models/KoiFish';
 import { CubeCamera, Environment, OrbitControls, useEnvironment } from '@react-three/drei';
+
+import KoiFish from '../models/KoiFish';
 import BambooRaft from '../models/BambooRaft';
 import Mirror from '../models/Mirror';
 import Grass from '../models/Grass';
