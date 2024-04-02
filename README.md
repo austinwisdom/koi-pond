@@ -1,9 +1,20 @@
-# React + Vite
+# $\textcolor{darkorange}{\textsf{koipond.live}}$
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This web app was a great way to level up my Three.js skills in React. I implemented and animated 3D objects from Sketchfab. I used React Fiber and Drei to turn the 3D assets into reusable components. It was extremely challenging yet so much fun! It's also a place to relax and escape. I also created a mapped and mirrored surface on a 3D sphere that can be adjusted live using Leva's GUI tools.
 
-Currently, two official plugins are available:
+No need to download or install anything in order to see the app, simply navigate to koipond.live and enjoy.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-# koi-pond
+## $\textcolor{darkorange}{\textsf{Tech Stack, Tools, and Libraries}}$
+
+- React application (Vite)
+- React-router-dom (single-page application)
+- Three.js
+- React Drei
+- React Fiber
+- Leva
+
+Deployment:
+- Netlify (front-end hosting)
+- Namecheap (domain ownership)
+
+
