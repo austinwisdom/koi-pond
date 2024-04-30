@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from 'react'
 import soundoff from '../assets/icons/soundoff.svg'
 import soundon from '../assets/icons/soundon.svg'
 
-import lotus from '../assets/lotus.mp3'
+import lotus from '../assets/Synthwave_Dreamscape.mp3'
 
 const Navbar = () => {
 
